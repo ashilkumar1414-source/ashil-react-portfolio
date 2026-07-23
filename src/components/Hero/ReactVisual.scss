@@ -1,0 +1,219 @@
+@use '../../styles/mixins' as *;
+
+.react-visual {
+  position: relative;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+
+  @include respond-to(md) {
+    min-height: 480px;
+  }
+
+  &__glow {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--color-accent-glow), transparent 65%);
+    filter: blur(20px);
+    animation: pulse-glow 6s ease-in-out infinite;
+  }
+
+  &__atom {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    z-index: 2;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  &__core {
+    position: absolute;
+    inset: 50%;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    border-radius: 50%;
+    background: var(--color-react);
+    box-shadow: 0 0 24px var(--color-accent-glow);
+  }
+
+  &__orbit {
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid color-mix(in srgb, var(--color-react) 55%, transparent);
+    border-radius: 50%;
+
+    &--1 {
+      transform: rotate(0deg) scaleY(0.38);
+    }
+
+    &--2 {
+      transform: rotate(60deg) scaleY(0.38);
+    }
+
+    &--3 {
+      transform: rotate(-60deg) scaleY(0.38);
+    }
+  }
+
+  &__electron {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    margin: -5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 12px var(--color-accent);
+    --orbit-radius: 86px;
+    animation: orbit 8s linear infinite;
+
+    &--2 {
+      animation-duration: 10s;
+      animation-delay: -2s;
+      --orbit-radius: 86px;
+      filter: hue-rotate(20deg);
+    }
+
+    &--3 {
+      animation-duration: 12s;
+      animation-delay: -4s;
+    }
+  }
+
+  &__panel {
+    @include glass;
+    position: absolute;
+    z-index: 3;
+    width: min(240px, 68%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-default);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    animation: float 7s ease-in-out infinite;
+
+    &--tree {
+      top: 8%;
+      left: 0;
+      animation-delay: -1s;
+    }
+
+    &--term {
+      bottom: 8%;
+      right: 0;
+      animation-delay: -2.5s;
+      width: min(210px, 62%);
+    }
+  }
+
+  &__panel-head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.02);
+
+    span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+
+      &:nth-child(1) {
+        background: #f87171;
+      }
+      &:nth-child(2) {
+        background: #fbbf24;
+      }
+      &:nth-child(3) {
+        background: #34d399;
+      }
+    }
+
+    em {
+      margin-left: auto;
+      font-style: normal;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+  }
+
+  pre {
+    margin: 0;
+    padding: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    overflow: hidden;
+  }
+
+  .tok-kw {
+    color: var(--color-accent);
+  }
+
+  .tok-comp {
+    color: var(--color-react);
+  }
+
+  .tok-prompt {
+    color: var(--color-success);
+  }
+
+  .tok-ok {
+    color: var(--color-success);
+  }
+
+  .tok-cursor {
+    color: var(--color-accent);
+    animation: blink 1s step-end infinite;
+  }
+
+  &__chip {
+    position: absolute;
+    z-index: 4;
+    padding: 0.4rem 0.75rem;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-default);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+    animation: float 5.5s ease-in-out infinite;
+
+    &--zustand {
+      top: 28%;
+      right: 2%;
+      animation-delay: -0.5s;
+    }
+
+    &--query {
+      bottom: 32%;
+      left: 2%;
+      animation-delay: -1.8s;
+    }
+
+    &--ts {
+      top: 58%;
+      right: 18%;
+      animation-delay: -3s;
+      color: var(--color-accent);
+      border-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+    }
+  }
+}
+
+@include reduced-motion {
+  .react-visual__atom,
+  .react-visual__panel,
+  .react-visual__chip,
+  .react-visual__electron {
+    animation: none !important;
+  }
+}

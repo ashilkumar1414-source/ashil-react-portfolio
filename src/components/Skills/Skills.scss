@@ -1,0 +1,64 @@
+@use '../../styles/mixins' as *;
+
+.skills {
+  @include section;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--bg-secondary) 70%, transparent), transparent);
+
+  &__grid {
+    display: grid;
+    gap: var(--space-4);
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(xl) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    @include card;
+    @include card-hover;
+    padding: var(--space-5);
+
+    h3 {
+      font-size: var(--fs-base);
+      margin-bottom: var(--space-4);
+      color: var(--text-primary);
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    li {
+      padding: 0.4rem 0.75rem;
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-input);
+      transition:
+        border-color var(--duration-base) var(--ease-out),
+        color var(--duration-base) var(--ease-out),
+        transform var(--duration-fast) var(--ease-out);
+
+      &:hover {
+        color: var(--text-primary);
+        border-color: var(--border-default);
+        transform: translateY(-1px);
+      }
+
+      &.is-highlighted {
+        color: #041016;
+        background: var(--gradient-accent);
+        border-color: transparent;
+        font-weight: var(--fw-semibold);
+        box-shadow: 0 6px 18px var(--color-accent-glow);
+      }
+    }
+  }
+}

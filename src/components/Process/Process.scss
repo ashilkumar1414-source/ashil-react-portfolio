@@ -1,0 +1,44 @@
+@use '../../styles/mixins' as *;
+
+.process {
+  @include section;
+
+  &__grid {
+    display: grid;
+    gap: var(--space-4);
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__item {
+    @include card;
+    @include card-hover;
+    padding: var(--space-5);
+    position: relative;
+  }
+
+  &__number {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--color-accent);
+    margin-bottom: var(--space-3);
+    letter-spacing: 0.06em;
+  }
+
+  h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  p {
+    font-size: var(--fs-sm);
+    margin: 0;
+  }
+}

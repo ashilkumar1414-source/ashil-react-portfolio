@@ -1,0 +1,76 @@
+@use '../../styles/mixins' as *;
+
+.about {
+  @include section;
+
+  &__grid {
+    display: grid;
+    gap: var(--space-7);
+
+    @include respond-to(lg) {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-9);
+      align-items: start;
+    }
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+
+    p {
+      font-size: var(--fs-md);
+    }
+  }
+
+  &__highlights {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+
+    li {
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--text-secondary);
+      font-size: var(--fs-sm);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55em;
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background: var(--color-accent);
+        box-shadow: 0 0 8px var(--color-accent-glow);
+      }
+    }
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  &__stat {
+    @include card;
+    padding: var(--space-5);
+
+    strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--color-accent);
+      margin-bottom: var(--space-2);
+      letter-spacing: -0.03em;
+    }
+
+    span {
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+    }
+  }
+}

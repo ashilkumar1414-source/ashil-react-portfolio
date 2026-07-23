@@ -1,0 +1,107 @@
+@use '../../styles/mixins' as *;
+
+.experience {
+  @include section;
+
+  &__card {
+    @include card;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-5);
+    padding: var(--space-6);
+
+    @include respond-to(md) {
+      padding: var(--space-7);
+      gap: var(--space-6);
+    }
+  }
+
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.35rem;
+  }
+
+  &__dot {
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 4px var(--color-accent-muted), 0 0 16px var(--color-accent-glow);
+    flex-shrink: 0;
+  }
+
+  &__line {
+    width: 2px;
+    flex: 1;
+    min-height: 4rem;
+    margin-top: var(--space-2);
+    background: linear-gradient(180deg, var(--color-accent), transparent);
+    opacity: 0.45;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+
+  &__company {
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    color: var(--text-primary);
+    font-size: var(--fs-lg);
+  }
+
+  &__period {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--color-accent);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-muted);
+  }
+
+  &__role {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semibold);
+    margin-bottom: var(--space-3);
+    color: var(--text-secondary);
+  }
+
+  &__desc {
+    margin-bottom: var(--space-5);
+    max-width: 48rem;
+  }
+
+  &__points {
+    display: grid;
+    gap: var(--space-2);
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+
+    li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55em;
+        width: 0.35rem;
+        height: 0.35rem;
+        border-radius: 50%;
+        background: var(--color-secondary);
+      }
+    }
+  }
+}

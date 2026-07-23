@@ -1,0 +1,108 @@
+@use '../../styles/mixins' as *;
+
+.hero {
+  @include section;
+  padding-top: clamp(2rem, 6vw, 4rem);
+  padding-bottom: clamp(4rem, 10vw, 7rem);
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: pulse-glow 8s ease-in-out infinite;
+
+    &--1 {
+      width: min(420px, 55vw);
+      height: min(420px, 55vw);
+      top: -8%;
+      right: 5%;
+      background: rgba(34, 211, 238, 0.18);
+    }
+
+    &--2 {
+      width: min(320px, 45vw);
+      height: min(320px, 45vw);
+      bottom: 5%;
+      left: -5%;
+      background: rgba(56, 189, 248, 0.12);
+      animation-delay: 2s;
+    }
+  }
+
+  &__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border-subtle) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%);
+    opacity: 0.45;
+  }
+
+  &__grid-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: var(--space-8);
+    align-items: center;
+
+    @include respond-to(lg) {
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: var(--space-9);
+    }
+  }
+
+  &__content {
+    animation: fade-up 0.9s var(--ease-out) both;
+  }
+
+  &__eyebrow {
+    margin-bottom: var(--space-4);
+  }
+
+  &__title {
+    font-size: var(--fs-hero);
+    margin-bottom: var(--space-5);
+    max-width: 16ch;
+  }
+
+  &__tagline {
+    font-size: var(--fs-md);
+    max-width: 36rem;
+    margin-bottom: var(--space-6);
+  }
+
+  &__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  &__social-label {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+  }
+
+  &__visual {
+    animation: fade-up 1s var(--ease-out) 0.15s both;
+  }
+}

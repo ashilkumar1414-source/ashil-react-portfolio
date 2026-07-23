@@ -1,0 +1,23 @@
+@use 'mixins' as *;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 1rem);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+@include max-width(md) {
+  :root {
+    --nav-height: 3.75rem;
+  }
+}

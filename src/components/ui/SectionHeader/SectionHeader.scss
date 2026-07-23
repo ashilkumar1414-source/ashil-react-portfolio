@@ -1,0 +1,15 @@
+.section-header {
+  margin-bottom: var(--space-8);
+
+  &--center {
+    text-align: center;
+
+    .section-eyebrow {
+      justify-content: center;
+    }
+
+    .section-lead {
+      margin-inline: auto;
+    }
+  }
+}

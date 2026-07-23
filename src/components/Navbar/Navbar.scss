@@ -1,0 +1,195 @@
+@use '../../styles/mixins' as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-height);
+  transition:
+    background var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    backdrop-filter var(--duration-base) var(--ease-out);
+  border-bottom: 1px solid transparent;
+
+  &--scrolled {
+    @include glass;
+    background: var(--bg-nav-scrolled);
+    border-bottom-color: var(--border-subtle);
+  }
+
+  &__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  &__logo {
+    @include focus-ring;
+    font-family: var(--font-display);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-sm);
+    letter-spacing: 0.14em;
+    color: var(--text-primary);
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__nav {
+    display: none;
+
+    @include respond-to(lg) {
+      display: block;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  &__link {
+    @include focus-ring;
+    position: relative;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: color var(--duration-base) var(--ease-out);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0.2rem;
+      width: 0;
+      height: 2px;
+      border-radius: var(--radius-full);
+      background: var(--color-accent);
+      transform: translateX(-50%);
+      transition: width var(--duration-base) var(--ease-out);
+    }
+
+    &:hover,
+    &.is-active {
+      color: var(--text-primary);
+    }
+
+    &.is-active::after {
+      width: 1.25rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  &__resume {
+    display: none;
+
+    @include respond-to(md) {
+      display: inline-flex;
+    }
+  }
+
+  &__burger {
+    @include button-reset;
+    @include focus-ring;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    gap: 5px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+
+    @include respond-to(lg) {
+      display: none;
+    }
+
+    span {
+      display: block;
+      width: 1.1rem;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: var(--radius-full);
+      transition:
+        transform var(--duration-base) var(--ease-out),
+        opacity var(--duration-fast) var(--ease-out);
+    }
+
+    &.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    &.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+
+  &__mobile {
+    position: fixed;
+    inset: var(--nav-height) 0 0;
+    @include glass;
+    background: var(--bg-nav-scrolled);
+    padding: var(--space-6) var(--container-pad);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+
+    @include respond-to(lg) {
+      display: none;
+    }
+
+    &.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    a {
+      @include focus-ring;
+      display: block;
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--fs-lg);
+      font-family: var(--font-display);
+      font-weight: var(--fw-semibold);
+      color: var(--text-secondary);
+      border-radius: var(--radius-lg);
+      border: 1px solid transparent;
+      transition:
+        color var(--duration-base) var(--ease-out),
+        background var(--duration-base) var(--ease-out);
+
+      &:hover,
+      &.is-active {
+        color: var(--text-primary);
+        background: var(--bg-input);
+        border-color: var(--border-subtle);
+      }
+    }
+  }
+}

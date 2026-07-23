@@ -1,0 +1,274 @@
+@use '../../styles/mixins' as *;
+
+.project-visual {
+  position: relative;
+  min-height: 180px;
+  padding: var(--space-4);
+  background:
+    radial-gradient(ellipse 80% 70% at 70% 20%, rgba(34, 211, 238, 0.12), transparent 55%),
+    var(--bg-secondary);
+
+  &--galaxiq {
+    background:
+      radial-gradient(ellipse 70% 60% at 30% 30%, rgba(56, 189, 248, 0.16), transparent 50%),
+      radial-gradient(ellipse 50% 50% at 80% 70%, rgba(34, 211, 238, 0.1), transparent 50%),
+      var(--bg-secondary);
+  }
+
+  &--marketing {
+    background:
+      radial-gradient(ellipse 60% 50% at 75% 25%, rgba(52, 211, 153, 0.12), transparent 50%),
+      var(--bg-secondary);
+  }
+
+  &--chatbot {
+    background:
+      radial-gradient(ellipse 55% 55% at 40% 60%, rgba(34, 211, 238, 0.14), transparent 55%),
+      var(--bg-secondary);
+  }
+
+  &--analytics {
+    background:
+      radial-gradient(ellipse 60% 50% at 55% 40%, rgba(56, 189, 248, 0.14), transparent 50%),
+      var(--bg-secondary);
+  }
+
+  &--campaign {
+    background:
+      radial-gradient(ellipse 50% 50% at 20% 70%, rgba(251, 191, 36, 0.1), transparent 50%),
+      var(--bg-secondary);
+  }
+
+  &--farming {
+    background:
+      radial-gradient(ellipse 60% 55% at 60% 35%, rgba(52, 211, 153, 0.16), transparent 55%),
+      var(--bg-secondary);
+  }
+
+  &--billing {
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 40%, rgba(251, 191, 36, 0.14), transparent 55%),
+      radial-gradient(ellipse 45% 45% at 80% 70%, rgba(34, 211, 238, 0.1), transparent 50%),
+      var(--bg-secondary);
+  }
+
+  &--restro {
+    background:
+      radial-gradient(ellipse 55% 55% at 70% 30%, rgba(248, 113, 113, 0.14), transparent 55%),
+      radial-gradient(ellipse 45% 45% at 20% 75%, rgba(251, 191, 36, 0.1), transparent 50%),
+      var(--bg-secondary);
+  }
+
+  &__surface {
+    @include glass;
+    height: 100%;
+    min-height: 148px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-default);
+    overflow: hidden;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--border-subtle);
+
+    span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-muted);
+
+      &:nth-child(1) {
+        background: #f87171;
+      }
+      &:nth-child(2) {
+        background: #fbbf24;
+      }
+      &:nth-child(3) {
+        background: #34d399;
+      }
+    }
+
+    em {
+      margin-left: auto;
+      font-style: normal;
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+  }
+
+  &__content {
+    padding: var(--space-4);
+    min-height: 100px;
+  }
+
+  &__charts {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.45rem;
+    height: 72px;
+
+    i {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--color-accent), transparent);
+      opacity: 0.85;
+    }
+  }
+
+  &__chat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+
+    span {
+      height: 0.7rem;
+      border-radius: var(--radius-full);
+      background: var(--border-default);
+
+      &.is-bot {
+        width: 72%;
+        background: var(--color-accent-muted);
+      }
+
+      &.is-user {
+        width: 55%;
+        align-self: flex-end;
+        background: var(--color-secondary-muted);
+      }
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 0.5rem;
+
+    span {
+      height: 2.4rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+
+      &:first-child {
+        grid-row: span 2;
+        height: auto;
+        background: linear-gradient(145deg, var(--color-accent-muted), transparent);
+      }
+    }
+  }
+
+  &__farm {
+    display: grid;
+    place-items: center;
+    height: 72px;
+    position: relative;
+
+    .leaf {
+      width: 36px;
+      height: 36px;
+      border-radius: 60% 0 60% 0;
+      background: linear-gradient(135deg, #34d399, #059669);
+      transform: rotate(-20deg);
+    }
+
+    .panel {
+      position: absolute;
+      right: 12%;
+      bottom: 8%;
+      width: 42%;
+      height: 1.5rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+    }
+  }
+
+  &__billing {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  &__billing-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+
+    .sku {
+      flex: 1;
+      height: 0.65rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .amt {
+      width: 28%;
+      height: 0.65rem;
+      border-radius: var(--radius-full);
+      background: rgba(251, 191, 36, 0.25);
+    }
+  }
+
+  &__billing-total {
+    margin-top: 0.35rem;
+    height: 1.35rem;
+    border-radius: var(--radius-md);
+    background: linear-gradient(90deg, rgba(251, 191, 36, 0.35), transparent);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+  }
+
+  &__restro {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    height: 72px;
+
+    .qr {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      background:
+        linear-gradient(90deg, #0b1220 25%, transparent 25%) 0 0 / 10px 10px,
+        linear-gradient(#0b1220 25%, transparent 25%) 0 0 / 10px 10px,
+        #f8fafc;
+      background-blend-mode: normal;
+      border: 2px solid var(--border-default);
+      box-shadow: inset 0 0 0 6px #f8fafc;
+    }
+
+    .menu {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+
+      i {
+        display: block;
+        height: 0.7rem;
+        border-radius: var(--radius-full);
+        background: var(--bg-input);
+        border: 1px solid var(--border-subtle);
+
+        &:nth-child(1) {
+          width: 90%;
+          background: rgba(248, 113, 113, 0.2);
+        }
+
+        &:nth-child(2) {
+          width: 75%;
+        }
+
+        &:nth-child(3) {
+          width: 60%;
+        }
+      }
+    }
+  }
+}

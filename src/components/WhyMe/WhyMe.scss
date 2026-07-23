@@ -1,0 +1,41 @@
+@use '../../styles/mixins' as *;
+
+.why-me {
+  @include section;
+
+  &__grid {
+    display: grid;
+    gap: var(--space-4);
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__card {
+    @include card;
+    @include card-hover;
+    padding: var(--space-6);
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: var(--space-4);
+    border-radius: var(--radius-lg);
+    background: var(--color-accent-muted);
+    color: var(--color-accent);
+  }
+
+  h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  p {
+    font-size: var(--fs-sm);
+    margin: 0;
+  }
+}

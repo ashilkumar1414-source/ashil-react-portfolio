@@ -1,0 +1,117 @@
+@use '../../styles/mixins' as *;
+
+.contact {
+  @include section;
+
+  &__grid {
+    display: grid;
+    gap: var(--space-7);
+
+    @include respond-to(lg) {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-9);
+      align-items: start;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+
+    p {
+      font-size: var(--fs-md);
+    }
+  }
+
+  &__channels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+
+    li {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    span {
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    a {
+      @include focus-ring;
+      color: var(--text-primary);
+      word-break: break-word;
+
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  &__form {
+    @include card;
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+
+    label {
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-medium);
+      color: var(--text-primary);
+    }
+
+    input,
+    textarea {
+      @include focus-ring;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-default);
+      background: var(--bg-input);
+      color: var(--text-primary);
+      transition: border-color var(--duration-base) var(--ease-out);
+      resize: vertical;
+
+      &::placeholder {
+        color: var(--text-muted);
+      }
+
+      &:hover {
+        border-color: var(--border-strong);
+      }
+
+      &[aria-invalid='true'] {
+        border-color: var(--color-danger);
+      }
+    }
+  }
+
+  &__error {
+    font-size: var(--fs-xs);
+    color: var(--color-danger);
+    margin: 0;
+  }
+
+  &__success {
+    font-size: var(--fs-sm);
+    color: var(--color-success);
+    margin: 0;
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+  }
+}
